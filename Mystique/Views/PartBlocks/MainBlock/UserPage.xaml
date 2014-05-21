@@ -123,19 +123,31 @@
                             <Run Foreground="Gray" Text="{Binding Name, Mode=OneWay}" />
                         </TextBlock>
                     </DockPanel>
-                    <TextBlock Foreground="Gray" TextWrapping="Wrap">
-                        <Run Text="Loc:" />
-                        <Run Text="{Binding Location, Mode=OneWay}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Foreground="Gray" TextWrapping="Wrap">
+                            <Run Text="ID:" />
+                        </TextBlock>
+                        <TextBox Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
+                        <TextBlock Grid.Column="2" Foreground="Gray" TextWrapping="Wrap" Margin="4, 0, 0, 0">
+                            <Run Text="Loc:" />
+                            <Run Text="{Binding Location, Mode=OneWay}" />
+                        </TextBlock>
+                        <TextBlock Grid.Column="3" Foreground="Gray" TextTrimming="CharacterEllipsis" Margin="4, 0, 0, 0">
+                            <Run Text="Web:" />
+                            <Hyperlink Command="{Binding OpenUserWebCommand}">
+                                <Hyperlink.ToolTip>
+                                    <TextBlock Text="{Binding ProfileUrl}" />
+                                </Hyperlink.ToolTip>
+                                <Run Text="{Binding ProfileUrl, Mode=OneWay}" />
+                            </Hyperlink>
                     </TextBlock>
-                    <TextBlock Foreground="Gray" TextTrimming="CharacterEllipsis">
-                        <Run Text="Web:" />
-                        <Hyperlink Command="{Binding OpenUserWebCommand}">
-                            <Hyperlink.ToolTip>
-                                <TextBlock Text="{Binding ProfileUrl}" />
-                            </Hyperlink.ToolTip>
-                            <Run Text="{Binding ProfileUrl, Mode=OneWay}" />
-                        </Hyperlink>
-                    </TextBlock>
+                    </Grid>
                 </StackPanel>
                 <Border Grid.Row="1"
                         Grid.ColumnSpan="2"

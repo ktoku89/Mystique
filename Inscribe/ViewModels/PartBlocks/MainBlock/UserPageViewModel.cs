@@ -67,6 +67,7 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
                     _user = value;
                     RaisePropertyChanged(() => User);
                     RaisePropertyChanged(() => UserProfileImageUrl);
+                    RaisePropertyChanged(() => AccountId);
                     RaisePropertyChanged(() => ScreenName);
                     RaisePropertyChanged(() => Name);
                     RaisePropertyChanged(() => IsVerified);
@@ -101,6 +102,14 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
             get
             {
                 return User != null ? User.TwitterUser.ProfileImage : null;
+            }
+        }
+
+        public string AccountId
+        {
+            get
+            {
+                return User != null ? User.TwitterUser.NumericId.ToString() : String.Empty;
             }
         }
 
