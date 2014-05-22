@@ -128,6 +128,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="Gray" TextWrapping="Wrap">
@@ -136,9 +137,9 @@
                         <TextBox Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
                         <TextBlock Grid.Column="2" Foreground="Gray" TextWrapping="Wrap" Margin="4, 0, 0, 0">
                             <Run Text="Loc:" />
-                            <Run Text="{Binding Location, Mode=OneWay}" />
                         </TextBlock>
-                        <TextBlock Grid.Column="3" Foreground="Gray" TextTrimming="CharacterEllipsis" Margin="4, 0, 0, 0">
+                        <TextBox Grid.Column="3" Text="{Binding Location, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
+                        <TextBlock Grid.Column="4" Foreground="Gray" TextTrimming="CharacterEllipsis" Margin="4, 0, 0, 0">
                             <Run Text="Web:" />
                             <Hyperlink Command="{Binding OpenUserWebCommand}">
                                 <Hyperlink.ToolTip>
@@ -146,7 +147,7 @@
                                 </Hyperlink.ToolTip>
                                 <Run Text="{Binding ProfileUrl, Mode=OneWay}" />
                             </Hyperlink>
-                    </TextBlock>
+                        </TextBlock>
                     </Grid>
                 </StackPanel>
                 <Border Grid.Row="1"
