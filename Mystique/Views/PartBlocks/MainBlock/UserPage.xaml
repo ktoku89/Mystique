@@ -12,6 +12,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:my="clr-namespace:Mystique.Views.Common"
              xmlns:tchild="clr-namespace:Mystique.Views.PartBlocks.MainBlock.TimelineChild"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              d:DesignHeight="746"
              d:DesignWidth="579"
              mc:Ignorable="d">
@@ -53,7 +54,7 @@
                 <Grid Margin="4" VerticalAlignment="Top">
                     <my:LazyImage Width="48"
                                   Height="48"
-                                  UriSource="{Binding UserProfileImageUrl}" />
+                                  gif:ImageBehavior.AnimatedSource="{Binding UserProfileImageUrl}" />
                     <StackPanel HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 Orientation="Horizontal">

@@ -15,6 +15,7 @@
              xmlns:pb="clr-namespace:Mystique.Views.Behaviors.Particular"
              xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
              xmlns:tchild="clr-namespace:Mystique.Views.PartBlocks.MainBlock.TimelineChild"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              Background="Transparent"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -428,7 +429,7 @@
                                            VerticalAlignment="Center"
                                            DefaultImage="{StaticResource Loading}"
                                            DockPanel.Dock="Left"
-                                           UriSource="{Binding Path=Tweet,
+                                           gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                                Converter={StaticResource TweetUserImageConverter},
                                                                ConverterParameter=Suggested}" />
                             <DockPanel DockPanel.Dock="Top">
@@ -508,7 +509,7 @@
                                        VerticalAlignment="Center"
                                        DefaultImage="{StaticResource Loading}"
                                        Stretch="UniformToFill"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Suggested}">
                             <com:LazyImage.Style>
@@ -811,7 +812,7 @@
                         <com:LazyImage Width="48"
                                        Height="48"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Suggested}">
                             <i:Interaction.Behaviors>
@@ -854,7 +855,7 @@
                         <com:LazyImage Width="40"
                                        Height="40"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Retweeted}">
                             <com:LazyImage.InputBindings>
@@ -871,7 +872,7 @@
                         <com:LazyImage Width="40"
                                        Height="40"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=DirectMessageRecipient}">
                             <com:LazyImage.InputBindings>
@@ -949,9 +950,9 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Image MaxHeight="300"
-                                           Source="{Binding PhotoUri,
-                                                            IsAsync=True}"
+                                           gif:ImageBehavior.AnimatedSource="{Binding PhotoUri, IsAsync=True}"
                                            Stretch="Uniform">
+                                        <!--"{Binding PhotoUri, IsAsync=True}"-->
                                         <Image.InputBindings>
                                             <MouseBinding Command="{Binding OpenUriCommand}" MouseAction="LeftClick" />
                                         </Image.InputBindings>
@@ -1359,7 +1360,7 @@
                         <com:LazyImage Width="48"
                                        Height="48"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Suggested}">
                             <i:Interaction.Behaviors>
@@ -1402,7 +1403,7 @@
                         <com:LazyImage Width="40"
                                        Height="40"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Retweeted}">
                             <com:LazyImage.InputBindings>
@@ -1419,7 +1420,7 @@
                         <com:LazyImage Width="40"
                                        Height="40"
                                        DefaultImage="{StaticResource Loading}"
-                                       UriSource="{Binding Path=Tweet,
+                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=DirectMessageRecipient}">
                             <com:LazyImage.InputBindings>
@@ -1497,9 +1498,9 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Image MaxHeight="300"
-                                           Source="{Binding PhotoUri,
-                                                            IsAsync=True}"
+                                           gif:ImageBehavior.AnimatedSource="{Binding PhotoUri, IsAsync=True}"
                                            Stretch="Uniform">
+                                        <!--"{Binding PhotoUri, IsAsync=True}"-->
                                         <Image.InputBindings>
                                             <MouseBinding Command="{Binding OpenUriCommand}" MouseAction="LeftClick" />
                                         </Image.InputBindings>

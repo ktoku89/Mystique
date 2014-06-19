@@ -94,7 +94,7 @@ namespace Inscribe.Plugin
                 url.EndsWith(".png") ||
                 url.EndsWith(".jpg") || url.EndsWith(".jpeg") || url.EndsWith(".jpe") ||
                 url.EndsWith(".bmp") || url.EndsWith(".dib") ||
-                url.EndsWith("gif");
+                url.EndsWith(".gif");
         }
 
         public static IUploader GetSuggestedUploader()
