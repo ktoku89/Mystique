@@ -120,9 +120,8 @@
                                     <Run FontSize="14" Text="{Binding ScreenName, StringFormat=@{0}, Mode=OneWay}" />
                                 </Hyperlink>
                             </Bold>
-                            <Run Foreground="Gray" Text="" />
-                            <Run Foreground="Gray" Text="{Binding Name, Mode=OneWay}" />
                         </TextBlock>
+                        <TextBox Foreground="Gray" FontSize="14" Text="{Binding Name, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" Margin="8, 0, 0, 0"/>
                     </DockPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -130,17 +129,22 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="Gray" TextWrapping="Wrap">
+                            <Run Text="Joined:" />
+                            <Run Text="{Binding CreatedAt, StringFormat=\{0:MMMM dd\, yyyy\}, Mode=OneWay}" />
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Foreground="Gray" TextWrapping="Wrap" Margin="4, 0, 0, 0">
                             <Run Text="ID:" />
                         </TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding AccountId, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
-                        <TextBlock Grid.Column="2" Foreground="Gray" TextWrapping="Wrap" Margin="4, 0, 0, 0">
+                        <TextBox Grid.Column="2" Text="{Binding AccountId, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
+                        <TextBlock Grid.Column="3" Foreground="Gray" TextWrapping="Wrap" Margin="4, 0, 0, 0">
                             <Run Text="Loc:" />
                         </TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding Location, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
-                        <TextBlock Grid.Column="4" Foreground="Gray" TextTrimming="CharacterEllipsis" Margin="4, 0, 0, 0">
+                        <TextBox Grid.Column="4" Text="{Binding Location, Mode=OneWay}" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False" BorderThickness="0" />
+                        <TextBlock Grid.Column="5" Foreground="Gray" TextTrimming="CharacterEllipsis" Margin="4, 0, 0, 0">
                             <Run Text="Web:" />
                             <Hyperlink Command="{Binding OpenUserWebCommand}">
                                 <Hyperlink.ToolTip>

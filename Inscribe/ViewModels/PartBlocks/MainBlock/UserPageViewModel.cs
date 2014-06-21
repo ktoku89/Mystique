@@ -19,6 +19,8 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
 {
     public class UserPageViewModel : TimelineCoreViewModelBase
     {
+        private static readonly DateTime NullDate = new DateTime();
+
         public TabViewModel Parent { get; private set; }
 
         public override bool IsActive
@@ -126,6 +128,14 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
             get
             {
                 return User != null ? User.TwitterUser.UserName : String.Empty;
+            }
+        }
+
+        public DateTime CreatedAt
+        {
+            get
+            {
+                return User != null ? User.TwitterUser.CreatedAt : NullDate;
             }
         }
 

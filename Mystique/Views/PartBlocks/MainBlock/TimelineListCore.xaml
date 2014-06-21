@@ -509,7 +509,7 @@
                                        VerticalAlignment="Center"
                                        DefaultImage="{StaticResource Loading}"
                                        Stretch="UniformToFill"
-                                       gif:ImageBehavior.AnimatedSource="{Binding Path=Tweet,
+                                       UriSource="{Binding Path=Tweet,
                                                            Converter={StaticResource TweetUserImageConverter},
                                                            ConverterParameter=Suggested}">
                             <com:LazyImage.Style>
