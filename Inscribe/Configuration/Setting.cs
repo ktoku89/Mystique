@@ -22,7 +22,7 @@ namespace Inscribe.Configuration
 
         private static string settingFilePath
         {
-            get { return Path.Combine(Path.GetDirectoryName(Define.ExeFilePath), Define.SettingFileName); }
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Define.ApplicationName, Define.SettingFileName); }
         }
 
         public static Setting Instance

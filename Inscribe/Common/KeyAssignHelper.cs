@@ -14,7 +14,7 @@ namespace Inscribe.Common
         /// <param name="fileName">アサインファイル名</param>
         public static String GetPath(string fileName)
         {
-            return Path.Combine(Path.GetDirectoryName(Define.ExeFilePath), Define.KeyAssignDirectory, fileName);
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Define.ApplicationName, Define.KeyAssignDirectory, fileName);
         }
 
         /// <summary>

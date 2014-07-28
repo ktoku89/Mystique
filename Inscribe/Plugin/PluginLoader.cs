@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.IO;
 using Acuerdo.External.Shortener;
 using Acuerdo.External.Uploader;
 using Acuerdo.Plugin;
@@ -80,7 +81,7 @@ namespace Inscribe.Plugin
             {
                 try
                 {
-                    var catalog = new DirectoryCatalog("plugins");
+                    var catalog = new DirectoryCatalog(Path.Combine(Path.GetDirectoryName(Define.ExeFilePath), "plugins"));
                     var container = new CompositionContainer(catalog);
                     container.ComposeParts(this);
                 }
