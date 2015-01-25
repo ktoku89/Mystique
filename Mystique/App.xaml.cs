@@ -7,6 +7,8 @@ using Inscribe.Common;
 using Inscribe.Core;
 using Livet;
 using System.Linq;
+using System.Diagnostics;
+using System.Windows.Threading;
 
 
 namespace Mystique
@@ -16,15 +18,17 @@ namespace Mystique
     /// </summary>
     public partial class App : Application
     {
+        public object ErrHandlerSender { get; private set; }
+        public UnhandledExceptionEventArgs ErrHandlerArg { get; private set; }
+        public DispatcherUnhandledExceptionEventArgs ErrHandlerArgDispatcher { get; private set; }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Application.Current.Exit += new ExitEventHandler(Exitting);
+            Application.Current.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(Current_UnhandledException);
             DispatcherHelper.UIDispatcher = Dispatcher;
-#if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-#endif
             Initializer.Init();
-            UpdateReceiver.StartSchedule();
         }
 
         void Exitting(object sender, ExitEventArgs e)
@@ -35,63 +39,16 @@ namespace Mystique
         //集約エラーハンドラ
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("ERROR THROWN:");
-            System.Diagnostics.Debug.WriteLine(e.ExceptionObject);
-            StringBuilder body = new StringBuilder();
-            body.AppendLine("********************************************************************************");
-            body.AppendLine(" ERROR TRACE: " + DateTime.Now.ToString());
-            body.AppendLine("********************************************************************************");
-            body.AppendLine(e.ExceptionObject.ToString());
-            body.AppendLine();
-            body.AppendLine("MEMORY USAGE:");
-            var cp = System.Diagnostics.Process.GetCurrentProcess();
-            body.AppendLine("paged:" + cp.PagedMemorySize64 + " / peak-virtual:" + cp.PeakVirtualMemorySize64);
-            body.AppendLine(Environment.OSVersion.VersionString + " (is64?" + (IntPtr.Size == 8).ToString() + ")");
-            body.AppendLine(Define.GetFormattedVersion() + " @" + Define.ExeFilePath);
+            this.ErrHandlerSender = sender;
+            this.ErrHandlerArg = e;
+            Debugger.Break();
+        }
 
-            #region Freezable Bug 対策
-
-            var argexcp = e.ExceptionObject as ArgumentException;
-            if (argexcp != null && argexcp.Message.Contains("Freezable") && argexcp.ParamName == "context")
-            {
-                try
-                {
-                    body.AppendLine("FREEZABLE***************************************************");
-                    body.AppendLine("Source:" + argexcp.Source);
-                    body.AppendLine("FREEZABLE END************************************************");
-                }
-                catch { }
-            }
-
-            #endregion
-
-            if (Define.IsOperatingSystemSupported)
-            {
-                var tpath = Path.GetTempFileName();
-                using (var sw = new StreamWriter(tpath))
-                {
-                    sw.WriteLine(body.ToString());
-                }
-                var apppath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-                System.Diagnostics.Process.Start(Path.Combine(apppath, Define.FeedbackAppName), tpath);
-                Environment.Exit(1);
-            }
-            else
-            {
-                // WinXPでβ以上の場合は何も吐かずに落ちる
-                if (Define.IsNightlyVersion)
-                {
-                    /*
-                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "krile_trace_" + Path.GetRandomFileName() + ".txt");
-                    using (var sw = new StreamWriter(path))
-                    {
-                        sw.WriteLine(body.ToString());
-                    }
-                    */
-                    MessageBox.Show("エラーが発生し、Krileの動作を継続できなくなりました。",
-                            "サポート対象外のOS", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+        private void Current_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            this.ErrHandlerSender = sender;
+            this.ErrHandlerArgDispatcher = e;
+            Debugger.Break();
         }
     }
 }

@@ -54,7 +54,6 @@ namespace Inscribe.ViewModels.Dialogs.Common
 
         public AboutViewModel()
         {
-            Task.Factory.StartNew(CheckUpdate);
         }
 
         public IEnumerable<ContributorViewModel> Contributors
@@ -117,27 +116,6 @@ namespace Inscribe.ViewModels.Dialogs.Common
             }
         }
 
-        private void CheckUpdate()
-        {
-            Thread.Sleep(100);
-            try
-            {
-                CheckState = VersionCheckState.Checking;
-                if (UpdateReceiver.CheckUpdate())
-                {
-                    CheckState = VersionCheckState.Ready;
-                }
-                else
-                {
-                    CheckState = VersionCheckState.Finished;
-                }
-            }
-            catch (Exception)
-            {
-                CheckState = VersionCheckState.Failed;
-            }
-        }
-
         #region AppUpdateCommand
         ViewModelCommand _AppUpdateCommand;
 
@@ -153,7 +131,6 @@ namespace Inscribe.ViewModels.Dialogs.Common
 
         private void AppUpdate()
         {
-            UpdateReceiver.StartUpdateArchive();
         }
 
         #endregion

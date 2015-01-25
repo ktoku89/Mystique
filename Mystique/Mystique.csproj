@@ -521,9 +521,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="app.manifest" />
-    <None Include="kup.pub">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

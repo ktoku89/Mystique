@@ -684,6 +684,27 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock.TimelineChild
         }
         #endregion
 
+        #region CopyTweetAsJson
+#if false
+        ViewModelCommand _CopyTweetAsJsonCommand;
+
+        public ViewModelCommand CopyTweetAsJson
+        {
+            get
+            {
+                if (_CopyTweetAsJsonCommand == null)
+                    _CopyTweetAsJsonCommand = new ViewModelCommand(null);
+                return _CopyTweetAsJsonCommand;
+            }
+        }
+
+        private void CopyTweetAsJson()
+        {
+
+        }
+#endif
+        #endregion
+
         private void CopyClipboard(string text)
         {
             try
