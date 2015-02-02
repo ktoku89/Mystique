@@ -81,7 +81,7 @@ namespace Inscribe.Plugin
             {
                 try
                 {
-                    var catalog = new DirectoryCatalog(Path.Combine(Path.GetDirectoryName(Define.ExeFilePath), "plugins"));
+                    var catalog = new DirectoryCatalog(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Define.ApplicationName, "plugins"));
                     var container = new CompositionContainer(catalog);
                     container.ComposeParts(this);
                 }

@@ -105,13 +105,11 @@ namespace Inscribe.ViewModels.Dialogs.Common
 
         #endregion
 
-        private VersionCheckState _checkState = VersionCheckState.Checking;
         public VersionCheckState CheckState
         {
-            get { return this._checkState; }
+            get { return VersionCheckState.Finished; }
             set
             {
-                this._checkState = value;
                 RaisePropertyChanged(() => CheckState);
             }
         }

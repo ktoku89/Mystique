@@ -24,6 +24,10 @@ namespace Mystique
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
             Application.Current.Exit += new ExitEventHandler(Exitting);
             Application.Current.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(Current_UnhandledException);
             DispatcherHelper.UIDispatcher = Dispatcher;
@@ -41,13 +45,22 @@ namespace Mystique
         {
             this.ErrHandlerSender = sender;
             this.ErrHandlerArg = e;
-            Debugger.Break();
+            BreakIntoDebugger();
         }
 
         private void Current_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             this.ErrHandlerSender = sender;
             this.ErrHandlerArgDispatcher = e;
+            BreakIntoDebugger();
+        }
+
+        public static void BreakIntoDebugger()
+        {
+            if (!Debugger.IsAttached)
+            {
+                Debugger.Launch();
+            }
             Debugger.Break();
         }
     }

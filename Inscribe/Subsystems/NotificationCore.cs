@@ -209,8 +209,7 @@ namespace Inscribe.Subsystems
         private static bool isPlaying = false;
         private static void PlaySound(EventKind eventKind, string overrideSoundPath)
         {
-            string path = Path.GetDirectoryName(Define.ExeFilePath);
-            path = Path.Combine(path, Define.MediaDirectory);
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Define.ApplicationName, Define.MediaDirectory);
             switch (eventKind)
             {
                 case EventKind.Mention:

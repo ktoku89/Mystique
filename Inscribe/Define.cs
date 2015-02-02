@@ -74,15 +74,7 @@ namespace Inscribe
 
         public static readonly string PluginDirectory = "plugins";
 
-        public static readonly string FeedbackAppName = "reporter.exe";
-
-        public static readonly string UpdateFileName = "kup.exe";
-
         public static readonly string DefaultStatusMessage = "完了";
-
-        public static readonly string RemoteVersionXml = "http://krile.starwing.net/update/update.xml";
-
-        public static readonly string PublicKeyFile = "kup.pub";
 
         public static readonly string MentionWavFile = "mention.wav";
 

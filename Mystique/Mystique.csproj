@@ -535,28 +535,16 @@
     <Resource Include="Resources\rted.png" />
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\favrt.png" />
-    <None Include="assigns\tween.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="media\new.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="media\event.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="media\mention.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="media\directmessage.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="assigns\tween.xml" />
+    <Content Include="media\new.wav" />
+    <Content Include="media\event.wav" />
+    <Content Include="media\mention.wav" />
+    <Content Include="media\directmessage.wav" />
     <Resource Include="Resources\warning.png" />
     <Resource Include="Resources\copy.png" />
     <Resource Include="Resources\empty.png" />
     <Resource Include="Resources\painting.png" />
-    <None Include="assigns\default.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="assigns\default.xml" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Design.dll" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Expression.Design.dll" />
     <Content Include="InfrastructureAssemblies\Livet.dll" />

@@ -57,8 +57,6 @@ namespace Inscribe.Core
             NotificationCore.Initialize();
             HashtagStorage.Initialize();
 
-            var apppath = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-
             Application.Current.Exit += new ExitEventHandler(AppExit);
         }
 

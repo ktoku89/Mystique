@@ -5,6 +5,7 @@ using System.Text;
 using Livet;
 using System.IO;
 using Inscribe.Configuration;
+using Inscribe.Common;
 
 namespace Inscribe.ViewModels.Dialogs.SettingSub
 {
@@ -19,9 +20,9 @@ namespace Inscribe.ViewModels.Dialogs.SettingSub
         {
             get
             {
-                return Directory.GetFiles(
-                    Path.Combine(Path.GetDirectoryName(Define.ExeFilePath),
-                    Define.KeyAssignDirectory), "*.xml").Select(s => Path.GetFileName(s))
+                var keyAssignPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Define.ApplicationName, Define.KeyAssignDirectory);
+                return Directory.GetFiles(keyAssignPath, "*.xml")
+                    .Select(s => Path.GetFileName(s))
                     .OrderBy(s => s)
                     .ToArray();
             }
