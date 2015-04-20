@@ -4,11 +4,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Dulcet.Twitter;
@@ -28,6 +30,7 @@ using Inscribe.ViewModels.PartBlocks.MainBlock.TimelineChild;
 using Livet;
 using Livet.Commands;
 using Livet.Messaging;
+using Nightmare.WinAPI;
 
 namespace Inscribe.ViewModels.PartBlocks.InputBlock
 {
@@ -1111,13 +1114,19 @@ namespace Inscribe.ViewModels.PartBlocks.InputBlock
             }
             else
             {
-                var ofm = new Livet.Messaging.IO.OpeningFileSelectionMessage("OpenFile");
-                ofm.Filter = "画像ファイル|*.jpg; *.png; *.gif; *.bmp|すべてのファイル|*.*";
-                ofm.Title = "添付する画像を選択";
-                var ret = this.Messenger.GetResponse(ofm);
-                if (ret.Response != null)
+                var ofn = new Comdlg32.OPENFILENAME();
+                var hwndsrc = (HwndSource)HwndSource.FromVisual(Application.Current.MainWindow);
+                ofn.lStructSize = (UInt32)Marshal.SizeOf(ofn);
+                ofn.hwndOwner = hwndsrc.Handle;
+                ofn.lpstrFilter = "画像ファイル(*.jpg;*.png;*.gif;*.bmp)\0*.jpg;*.png;*.gif;*.bmp\0すべてのファイル(*.*)\0*.*\0";
+                ofn.lpstrFile = new string('\0', 1024);
+                ofn.nMaxFile = 1024;
+                ofn.lpstrTitle = "添付する画像を選択";
+                ofn.Flags = Comdlg32.OFN_HIDEREADONLY | Comdlg32.OFN_DONTADDTORECENT | Comdlg32.OFN_FILEMUSTEXIST | Comdlg32.OFN_NODEREFERENCELINKS | Comdlg32.OFN_NOTESTFILECREATE | Comdlg32.OFN_PATHMUSTEXIST;
+                var ret = Comdlg32.GetOpenFileName(ofn);
+                if (ret)
                 {
-                    AttachImage(ret.Response);
+                    AttachImage(ofn.lpstrFile);
                 }
             }
         }

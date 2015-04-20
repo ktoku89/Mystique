@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using Inscribe.Common;
@@ -26,6 +28,8 @@ namespace Inscribe.Core
             // ネットワーク初期化
             Dulcet.Network.Http.Expect100Continue = false;
             Dulcet.Network.Http.MaxConnectionLimit = Int32.MaxValue;
+            Debug.WriteLine("SecurityProtocolの初期値は{0}です。", Dulcet.Network.Http.SecurityProtocol);
+            Dulcet.Network.Http.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             // プラグインのロード
             PluginLoader.Load();

@@ -9,6 +9,7 @@ using Livet;
 using System.Linq;
 using System.Diagnostics;
 using System.Windows.Threading;
+using Nightmare.WinAPI;
 
 
 namespace Mystique
@@ -24,7 +25,7 @@ namespace Mystique
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (Debugger.IsAttached)
+            if (Debugger.IsAttached && !User32.IsKeyPressed(VirtualKey.VK_SHIFT))
             {
                 Debugger.Break();
             }
@@ -62,6 +63,8 @@ namespace Mystique
                 Debugger.Launch();
             }
             Debugger.Break();
+
+            Environment.Exit(44);
         }
     }
 }

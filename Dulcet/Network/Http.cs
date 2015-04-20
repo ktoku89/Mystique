@@ -43,10 +43,10 @@ namespace Dulcet.Network
             set { ServicePointManager.DefaultConnectionLimit = value; }
         }
 
-        static Http()
+        public static SecurityProtocolType SecurityProtocol
         {
-            // Windows 8.1 Preview
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            get { return ServicePointManager.SecurityProtocol; }
+            set { ServicePointManager.SecurityProtocol = value; }
         }
 
         #region Converter delegate definitions and common converters
