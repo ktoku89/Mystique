@@ -58,13 +58,21 @@ namespace Mystique
 
         public static void BreakIntoDebugger()
         {
+            var result = MessageBox.Show("例外が発生しました。終了しますか?", null, MessageBoxButton.YesNo, MessageBoxImage.Stop, MessageBoxResult.No);
+
             if (!Debugger.IsAttached)
             {
                 Debugger.Launch();
             }
-            Debugger.Break();
+            else
+            {
+                Debugger.Break();
+            }
 
-            Environment.Exit(44);
+            if (result == MessageBoxResult.Yes)
+            {
+                Environment.Exit(44);
+            }
         }
     }
 }
