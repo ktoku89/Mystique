@@ -490,7 +490,8 @@
                                        Foreground="Black"
                                        Padding="0"
                                        Text="{Binding Path=Tweet.TweetText}"
-                                       TextWrapping="Wrap" />
+                                       TextWrapping="Wrap"
+                                       FontStyle="{Binding Path=Tweet.TextStyleForTimeline, Mode=OneWay}" />
                         </DockPanel>
                     </ToolTip>
                 </Grid.ToolTip>
@@ -675,7 +676,8 @@
                                           Mode=OneTime,
                                           Converter={StaticResource SingleLineConverter}}"
                            TextTrimming="{Binding Path=Tweet.TextTrimming}"
-                           TextWrapping="{Binding Path=Tweet.TextWrapping}" />
+                           TextWrapping="{Binding Path=Tweet.TextWrapping}"
+                           FontStyle="{Binding Tweet.TextStyleForTimeline, Mode=OneWay}" />
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <Border Margin="1,0"
                             VerticalAlignment="Center"
@@ -934,7 +936,8 @@
                                                IsReadOnly="True"
                                                IsUndoEnabled="False"
                                                Padding="0"
-                                               SelectionChanged="BodyText_SelectionChanged">
+                                               SelectionChanged="BodyText_SelectionChanged"
+                                               FontStyle="{Binding Tweet.TextStyleForTimeline, Mode=OneWay}">
                         <i:Interaction.Triggers>
                             <l:InteractionMessageTrigger MessageKey="RichTextBoxAction" Messenger="{Binding Messenger}">
                                 <ba:RichTextBoxAction />
@@ -1482,7 +1485,8 @@
                                                IsReadOnly="True"
                                                IsUndoEnabled="False"
                                                Padding="0"
-                                               SelectionChanged="BodyText_SelectionChanged">
+                                               SelectionChanged="BodyText_SelectionChanged"
+                                               FontStyle="{Binding Tweet.TextStyleForTimeline, Mode=OneWay}">
                         <i:Interaction.Triggers>
                             <l:InteractionMessageTrigger MessageKey="RichTextBoxAction" Messenger="{Binding Messenger}">
                                 <ba:RichTextBoxAction />

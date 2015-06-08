@@ -26,17 +26,35 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock.TimelineChild
 
         public readonly long bindingId;
 
+        public bool IsRemoved { get; private set; }
+
+        public FontStyle TextStyleForTimeline
+        {
+            get
+            {
+                return this.IsRemoved ? FontStyles.Oblique : FontStyles.Normal;
+            }
+        }
+
         public TweetViewModel(TwitterStatusBase status)
         {
             if (status == null)
                 throw new ArgumentNullException("status");
             this.bindingId = status.Id;
             this.Status = status;
+            this.IsRemoved = false;
         }
 
         public TweetViewModel(long id)
         {
             this.bindingId = id;
+            this.IsRemoved = false;
+        }
+
+        public void MarkAsRemoved()
+        {
+            this.IsRemoved = true;
+            this.RaisePropertyChanged("TextStyleForTimeline");
         }
 
         /// <summary>

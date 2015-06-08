@@ -157,7 +157,10 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
                         RemoveTweet(e.Tweet);
                         break;
                 case TweetActionKind.Removed:
-                    RemoveTweet(e.Tweet);
+                    if (e.Tweet.IsRemoved)
+                        RemoveTweet(e.Tweet);
+                    else
+                        e.Tweet.MarkAsRemoved();
                     break;
             }
         }

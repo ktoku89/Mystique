@@ -438,15 +438,19 @@ namespace Inscribe.Storage
                 deleteReserveds.AddLast(id);
                 if (dictionary.TryGetValue(id, out remobj))
                 {
-                    dictionary.Remove(id);
-                    _count--;
+                    if (remobj.IsRemoved)
+                    {
+                        dictionary.Remove(id);
+                        _count--;
+                    }
                 }
             }
             if (remobj != null)
             {
                 using (vmLockWrap.GetWriterLock())
                 {
-                    viewmodels.Remove(remobj);
+                    if (remobj.IsRemoved)
+                        viewmodels.Remove(remobj);
                 }
                 Task.Factory.StartNew(() => RaiseStatusRemoved(remobj));
                 // リツイート判定
