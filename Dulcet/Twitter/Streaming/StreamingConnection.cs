@@ -77,7 +77,7 @@ namespace Dulcet.Twitter.Streaming
                     {
                         timeoutCount = 0;
                         String cline = sr.ReadLine();
-                        System.Diagnostics.Debug.WriteLine("thread: " + cno + " ( " + Provider.ToString() + " ) / " + cline);
+                      //System.Diagnostics.Debug.WriteLine("thread: " + cno + " ( " + Provider.ToString() + " ) / " + cline);
                         this.parentCore.EnqueueReceivedObject(this.Provider, cline);
                         // sr.ReadLine());
                     }
@@ -95,7 +95,7 @@ namespace Dulcet.Twitter.Streaming
             }
             finally
             {
-                System.Diagnostics.Debug.WriteLine("thread: ***DISCONNECTED*** " + cno + " ( " + Provider.ToString() + " ) ");
+              //System.Diagnostics.Debug.WriteLine("thread: ***DISCONNECTED*** " + cno + " ( " + Provider.ToString() + " ) ");
                 FinalizeStream();
             }
         }

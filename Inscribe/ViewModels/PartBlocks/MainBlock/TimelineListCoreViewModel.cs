@@ -95,7 +95,7 @@ namespace Inscribe.ViewModels.PartBlocks.MainBlock
             set
             {
                 scrollIndex = value;
-                System.Diagnostics.Debug.WriteLine(value);
+              //System.Diagnostics.Debug.WriteLine(value);
             }
         }
 

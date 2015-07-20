@@ -34,7 +34,7 @@ namespace Inscribe.Core
             TweetSpeedPerMin = TweetStorage.GetAll((t) => t.CreatedAt > morigin).Count();
             var horigin = (DateTime.Now - new TimeSpan(1, 0, 0));
             TweetSpeedPerHour = TweetStorage.GetAll((t) => t.CreatedAt > horigin).Count();
-            System.Diagnostics.Debug.WriteLine(morigin.ToString() + " / " + horigin.ToString());
+          //System.Diagnostics.Debug.WriteLine(morigin.ToString() + " / " + horigin.ToString());
             OnTweetSpeedUpdated(EventArgs.Empty);
         }
 

@@ -98,7 +98,7 @@ namespace Dulcet.Twitter.Credential
                                 throw new NotSupportedException("Invalid format.");
                         }
                     }, senddata: body);
-                if (ret.Succeeded && ret.Data != null)
+                if (ret.Succeeded)
                 {
                     return ret.Data;
                 }

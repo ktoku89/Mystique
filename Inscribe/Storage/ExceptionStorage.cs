@@ -48,6 +48,11 @@ namespace Inscribe.Storage
             if (Setting.IsInitialized && Setting.Instance.ExperienceProperty.IgnoreTimeoutError &&
                 (wex = excp as WebException) != null && wex.Status == WebExceptionStatus.Timeout)
                 return;
+            wex = excp as WebException;
+            if ((wex != null) && (wex.Status == WebExceptionStatus.SecureChannelFailure))
+            {
+                return;
+            }
             exceptions.AddLast(new ExceptionDescription(excp, category, message ?? excp.Message, retry));
             OnExceptionUpdated(EventArgs.Empty);
         }

@@ -67,6 +67,10 @@ namespace Inscribe.Common
                         Thread.Sleep(Setting.Instance.ConnectionProperty.AutoRetryIntervalMSec);
                         continue;
                     }
+                    else if (we.Status == WebExceptionStatus.SecureChannelFailure)
+                    {
+                        return default(T);
+                    }
                     else
                     {
                         ExceptionStorage.Register(we, ExceptionCategory.TwitterError, null, () => operate());
